@@ -31,6 +31,12 @@ const productData = [
     stock: 22,
     category_id: 2,
   },
+  {
+    product_name: 'Flying potatos',
+    price: 229.99,
+    stock: 122,
+    category_id: 6,
+  },
 ];
 
 const seedProducts = () => Product.bulkCreate(productData);
