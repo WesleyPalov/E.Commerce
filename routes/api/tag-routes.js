@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Tag, Product, ProductTag } = require('../../models');
+const { Tag, Product } = require('../../models');
 
 // The `/api/tags` endpoint
 
@@ -12,12 +12,12 @@ router.get('/', (req, res) => {
       attributes: ['product_name', 'price', 'stock', 'category_id']
     }
   })
-    .then(dbCatData => {
-      if(!dbCatData) {
-        res.status(404).json({message: 'No categories found'});
+    .then(dbTagData => {
+      if(!dbTagData) {
+        res.status(404).json({message: 'No Tags found'});
         return;
       }
-      res.json(dbCatData);
+      res.json(dbTagData);
     })
     .catch(err => {
       console.log(err);
@@ -37,7 +37,14 @@ router.get('/:id', (req, res) => {
       attributes: ['product_name', 'price', 'stock', 'category_id']
     }
   })
-    .then(dbTagData => res.json(dbTagData))
+    .then(dbTagData => {
+      if (!dbTagData) {
+        res.status(404).send("<h1>No tag found with this id</h1>");
+        return;
+      } 
+      res.json(dbTagData);
+    })
+
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -66,7 +73,7 @@ router.put('/:id', (req, res) => {
   })
     .then(dbTagData => {
       if (!dbTagData){
-        res.status(404).json({message:'No tag found with this id'});
+        res.status(404).send("<h1>No tag found with this id</h1>");
         return;
       }
       res.json(dbTagData);
@@ -86,7 +93,7 @@ router.delete('/:id', (req, res) => {
   })
   .then(dbTagData => {
     if (!dbTagData) {
-      res.status(404).json({message: 'No tag found with this id'});
+      res.status(404).send("<h1>No tag found with this id</h1>");
       return;
     }
     res.json(dbTagData);
