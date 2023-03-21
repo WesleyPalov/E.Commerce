@@ -5,6 +5,9 @@ Internet retail, also known as **e-commerce**, is the largest sector of the elec
 The back end has been build for an e-commerce site by usin a starter code. Express.js API has been cofiguured to use Sequelize to interact with a MySQL database. 
 Since this is a back end only application , some HTML elements have been used for demonstration purpose. 
 
+## Link to video
+https://drive.google.com/file/d/1fSAGWB1oO-h8Dq6utS8ASgUPwvDQ2Gdr/view
+
 ## User Story
 
 ```md
